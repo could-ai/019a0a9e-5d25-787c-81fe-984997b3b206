@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:smart_note/models/note_model.dart';
@@ -80,7 +81,6 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
               child: QuillEditor.basic(
                 configurations: QuillEditorConfigurations(
                   controller: _controller,
-                  readOnly: false,
                 ),
               ),
             ),

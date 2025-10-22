@@ -83,5 +83,47 @@ class DatabaseHelper {
     return await db.delete('notes', where: 'id = ?', whereArgs: [id]);
   }
 
-  // Similar methods for categories and reminders...
+  // Category operations
+  Future<int> insertCategory(Category category) async {
+    final db = await database;
+    return await db.insert('categories', category.toMap());
+  }
+
+  Future<List<Category>> getCategories() async {
+    final db = await database;
+    final maps = await db.query('categories');
+    return List.generate(maps.length, (i) => Category.fromMap(maps[i]));
+  }
+
+  Future<int> updateCategory(Category category) async {
+    final db = await database;
+    return await db.update('categories', category.toMap(), where: 'id = ?', whereArgs: [category.id]);
+  }
+
+  Future<int> deleteCategory(int id) async {
+    final db = await database;
+    return await db.delete('categories', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // Reminder operations
+  Future<int> insertReminder(Reminder reminder) async {
+    final db = await database;
+    return await db.insert('reminders', reminder.toMap());
+  }
+
+  Future<List<Reminder>> getReminders() async {
+    final db = await database;
+    final maps = await db.query('reminders');
+    return List.generate(maps.length, (i) => Reminder.fromMap(maps[i]));
+  }
+
+  Future<int> updateReminder(Reminder reminder) async {
+    final db = await database;
+    return await db.update('reminders', reminder.toMap(), where: 'id = ?', whereArgs: [reminder.id]);
+  }
+
+  Future<int> deleteReminder(int id) async {
+    final db = await database;
+    return await db.delete('reminders', where: 'id = ?', whereArgs: [id]);
+  }
 }
